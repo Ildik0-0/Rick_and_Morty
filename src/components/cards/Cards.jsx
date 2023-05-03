@@ -1,12 +1,13 @@
 
 //import characters from '../data';
-import Card from './Card';
+import Card from '../card/Card';
+import style from '../cards/cards.module.css'
 
 
 
 export default function Cards({characters}) {
    return( 
-   <div>
+   <div className={style.cards}>
     {
       characters.map(({id, name, status, species, gender, origin, image}) =>{
          return (
