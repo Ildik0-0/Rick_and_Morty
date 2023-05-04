@@ -8,7 +8,7 @@ export default function Card(props) {
             <>
             <div className={style.conteiner}>
 
-               <button className={style.onClose} onClick={props.onClose} >Close!</button>
+               <button className={style.onClose} onClick={() => props.onClose(props.id)} >Close!</button>
               
                <h2>{props.name}</h2>
                <h2>{props.status}</h2>

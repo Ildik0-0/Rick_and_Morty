@@ -1,4 +1,7 @@
 .App {
    text-align: center;
+  
+}
+body{
    background-image: url(components/card/space3.jpg) ;
 }
