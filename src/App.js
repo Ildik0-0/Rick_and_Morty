@@ -1,11 +1,19 @@
 import './App.css';
-
+//Rutas de los Componentes
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav';
+import About from './components/about/About.jsx';
+import Detail from './components/deatil/Deatil.jsx';
+//Estados 
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+//Importacion Axios
 import axios from 'axios';
+
 //import characters, { Rick } from './data.js';
 
+// const URL_BASE = ''
+//const API_KEY = ''
 
 function App() {
 
@@ -31,8 +39,13 @@ function App() {
    return (
       <div className='App'>
          <Nav onSearch={onSearch}/>
-         <Cards characters={characters} onClose={onClose}/>
          
+            <Routes>
+               <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}></Route>
+               <Route path='/about' element={<About/>} />
+               <Route path='/detail/:id' element={<Detail/>} />
+            </Routes>
+   
          
       </div>
    );
