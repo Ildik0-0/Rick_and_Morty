@@ -1,0 +1,13 @@
+.formDiv{
+    border: 3px solid #ffd52d;
+    width: 250px;
+    height: 250px;
+    /* display: flex;
+    justify-content: center;
+    align-self: center; */
+    left: 50px;
+}
+.form{
+    color: #ffd52d;
+    margin: 50px;
+}
