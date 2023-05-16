@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useParams} from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import {useState, useEffect} from "react"
+import style from "./detail.module.css";
 
 const Detail = () => {
     const {id} = useParams() 
@@ -21,17 +22,34 @@ const Detail = () => {
  }, [id]);
 
     return(
-        <div>
-            <h1>Detail AQUI</h1>
-    
-            <h2>{character?.name}</h2>
-            <h2>{character?.status}</h2>
-            <h2>{character?.species}</h2>
-            <h2>{character?.gender}</h2>
-            <h2>{character?.origin?.name}</h2>
-            <img scr={character?.image} alt={character.name}/>
-        </div>
-    )
+      <div className={style.container} >
+         <div >
+            <div>
+               <button>
+                  <Link to='/home' className={style.link} >Home</Link>
+               </button>
+               <h1>{character?.name}</h1>
+            </div>
+
+         <div className={style.detail} >
+            <div className={style.containerImg} >
+               <img src={character?.image} alt={character?.name} />
+            </div>
+            
+               <div >
+                  <label htmlFor="status">Status: </label>
+                  <p>{character?.status}</p>
+                  <label htmlFor="specie">Specie: </label>
+                  <p>{character?.species}</p>
+                  <label htmlFor="gender">Gender: </label>
+                  <p>{character?.gender}</p>
+                  <label htmlFor="origin">Origin: </label>
+                  <p>{character?.origin?.name}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+  )
 }
 
 export default Detail;

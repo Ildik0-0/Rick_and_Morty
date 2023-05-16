@@ -1,55 +1,106 @@
+// import { ADD_FAV, FILTER, ORDER, REMOVE_FAV } from "./action-types";
+
+// const initialState = {
+//     myFavorites: [],
+//     allCharacterFv: [],
+
+// }
+
+// const reducer = (state=initialState, action )=>{
+//     switch(action.type){
+
+//         case ADD_FAV:
+//             return{
+//                 ...state,
+//                 myFavorites: [...state.allCharacterFv, action.payload],
+//                 allCharacterFv:[...state.allCharacterFv, action.payload]
+//             }
+
+//         case REMOVE_FAV:
+//             return{
+//                 ...state,
+//                 myFavorites: state.myFavorites.filter(fav => fav.id === action.payload)
+
+//             }
+            
+//         case FILTER:
+//             const allCharactersFiltered = state.allCharacterFv.filter(character =>
+//                  character.gender === action.payload)
+//             return{
+//                 ...state,
+//                 myFavorites:
+//                     action.payload === 'allCharacters'
+//                     ? [...state.allCharacterFv]
+//                     : allCharactersFiltered
+//             }
+
+//         case ORDER:
+//             const allCharactersFavCopy = [...state.allCharacterFv]
+
+//             return{
+//                 ...state,
+//                 myFavorites:
+//                     action.payload === 'A'
+//                     ? allCharactersFavCopy.sort((a , b) => a.id - b.id ) 
+//                     : allCharactersFavCopy.sort((a, b) =>b.id - a.id)
+//             }
+
+//         default:
+//             return{
+//                 ...state
+//             }
+//     }
+// }
+
+// export default reducer;
+
 import { ADD_FAV, FILTER, ORDER, REMOVE_FAV } from "./action-types";
 
 const initialState = {
     myFavorites: [],
-    allCharacterFv: [],
-
+    allCharactersFav: []
 }
 
-const reducer = (state=initialState, action )=>{
-    switch(action.type){
 
+const reducer = (state = initialState, { type, payload }) => {
+    switch( type ){
         case ADD_FAV:
-            return{
+            return {
                 ...state,
-                myFavorites: [...state.allCharacterFv, action.payload],
-                allCharacterFv:[...state.allCharacterFv, action.payload]
+                myFavorites: [...state.allCharactersFav, payload],
+                allCharactersFav: [...state.allCharactersFav, payload]
             }
 
-        case REMOVE_FAV:
-            return{
+        case REMOVE_FAV: 
+            return {
                 ...state,
-                myFavorites: state.myFavorites.filter(fav => fav.id === action.payload)
-
+                myFavorites: state.myFavorites.filter(fav => fav.id !== payload)
             }
-            
+
         case FILTER:
-            const allCharactersFiltered = state.allCharacterFv.filter(character =>
-                 character.gender === action.payload)
-            return{
+            const allCharactersFiltered = state.allCharactersFav.filter(character => character.gender === payload)
+            return {
                 ...state,
-                myFavorites:
-                    action.payload === 'allCharacters'
-                    ? [...state.allCharacterFv]
+                myFavorites: 
+                    payload === 'allCharacters'
+                    ? [...state.allCharactersFav]
                     : allCharactersFiltered
             }
 
         case ORDER:
-            const allCharactersFavCopy = [...state.allCharacterFv]
-
-            return{
+            const allCharactersFavCopy = [...state.allCharactersFav]
+            return {
                 ...state,
                 myFavorites:
-                    action.payload === 'A'
-                    ? allCharactersFavCopy.sort((a , b) => a.id - b.id ) 
-                    : allCharactersFavCopy.sort((a, b) =>b.id - a.id)
+                    payload === 'A'
+                    ? allCharactersFavCopy.sort((a, b) => a.id - b.id)
+                    : allCharactersFavCopy.sort((a, b) => b.id - a.id)
             }
 
         default:
-            return{
-                ...state
-            }
+            return {...state}
     }
 }
+
 
 export default reducer;

@@ -2,41 +2,43 @@ import Card from "../card/Card"
 import { connect, useDispatch } from "react-redux"
 import { filterCards, orderCards } from "../../redux/action"
 import { useState } from "react";
+import style from "./favorite.module.css"
 
-const Favotite = ({myFavotites}) =>{
+const Favorite = ({myFavorites}) =>{
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [aux, setAux] = useState(false);
 
-    const handleOrder = (event) =>{
-        dispatch(orderCards(event.target.value))
+    const handleOrder = (event) => {
+        dispatch(orderCards(event.target.value));
         setAux(true);
     }
 
-    const handleFilter= (event) =>{
-        dispatch(filterCards(event.target.value)) 
+    const handleFilter = (event) => {
+        dispatch(filterCards(event.target.value))
     }
 
 
     return(
-     <>
-     <select onChange={handleOrder}>
-        <option value='A'>Ascendente </option>
-        <option value='D'>Descendente </option>
-     </select>
+        <div >
+        <select onChange={handleOrder}>
+            <option value="A">Ascendente</option>
+            <option value="D">Descendente</option>
+        </select>
 
         <select onChange={handleFilter}>
             <option value="Male">Male</option>
-            <option value="Femele">Femele</option>
+            <option value="Female">Female</option>
             <option value="Genderless">Genderless</option>
             <option value="unknown">unknown</option>
+            <option value="allCharacters">All Characters</option>
         </select>
 
      
      {
-        myFavotites?.map(fav=>{
+        myFavorites?.map(fav=>{
             return(
-                <Card
+                <Card className={style.fav}
                 
                 key={fav.id}
                 id={fav.id}
@@ -52,13 +54,13 @@ const Favotite = ({myFavotites}) =>{
         })
      }
      
-     </>
+     </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return{
-    myFavotites: state.myFavotites
+    myFavorites: state.myFavorites
     }
 }
 
@@ -66,4 +68,4 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     null,
-)(Favotite)
+)(Favorite)

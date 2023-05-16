@@ -1,11 +1,12 @@
 import './App.css';
+import "./style/app.css";
 //Rutas de los Componentes
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav';
 import About from './components/about/About.jsx';
 import Detail from './components/deatil/Deatil.jsx';
 import Forms from './components/form/Forms';
-import Favotite from './components/favorite/Favorite';
+import Favorite from './components/favorite/Favorite';
 //Estados 
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -67,7 +68,7 @@ function App() {
                <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}></Route>
                <Route path='/about' element={<About/>} />
                <Route path='/detail/:id' element={<Detail/>} />
-               <Route path='/favorite' element={<Favotite/>} />
+               <Route path='/favorite' element={<Favorite/>} />
             </Routes>
    
          

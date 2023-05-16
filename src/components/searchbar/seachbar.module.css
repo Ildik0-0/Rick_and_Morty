@@ -4,6 +4,7 @@
     position: relative;
     display: flex;
     align-self: center;
+    right: 430px;
   }
   .inputsearch{
     padding: 10px;
